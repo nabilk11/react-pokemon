@@ -12,22 +12,35 @@ function App() {
   // creating state for nextPageUrl and prevPageUrl
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
-
+  //loading screen state | usestate is set to true to say default state is loading
+  const [loading, setLoading] = useState(true)
 
 // useEffect statement will make a new api call to whatever the new currentPageUrl is whenever it changes
 // it will also be setting new pokemon data based on the new page url, which will display 20 different pokemon
   useEffect(() => {
+    // setloading set to true, shows that before api call is made app is loading
+    setLoading(true)
+    let cancel
   // making api call with axios
-axios.get(currentPageUrl).then(res => {
+axios.get(currentPageUrl, {
+  // passing an additional argument into get request of cancel token
+  cancelToken: new axios.CancelToken(c => cancel = c)
+}).then(res => {
+  //setLoading is set to false to show that after api call is made page is no longer loading
+  setLoading(false)
   // setting next and previous page url
   setNextPageUrl(res.data.next)
   setPrevPageUrl(res.data.previous)
   // setting pokemon data
   setPokemon(res.data.results.map(p => p.name))
 })
+  //must return cancel token here
+  return () => cancel() 
   }, [currentPageUrl])
 
 
+  // create conditional function to show that if loading is true, then it will return loading text
+  if (loading) return "Pokemon are Loading..."
 
 
   return (
@@ -58,3 +71,9 @@ export default App;
 // then the useEffect will run again, and perform the axios api call for the new currentPageUrl
 // adding change of next and previous page url to our axios api call withing the useEffect function
 // this will change the data based on the properties of next and previous given to us from the api using res.data.next/previous
+// adding a loading versus not loading state - to display a loading screen
+// added condtional statement to show if loading is true, on slower internet for isntance, it will show text
+// adding cancel token from axios - this will cancel older requests before a new request is being made
+// this ensures no older data is being loaded as the new data is being requested
+// need to pass new cancel token into get request and call cancel() function to return at the end of our useEffect
+
