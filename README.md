@@ -1,3 +1,12 @@
+# React Pokemon App
+A simple React application that uses the Pokemon API available at pokeapi.co, to view a list of Pokemon.
+
+# Pokemon API
+https://pokeapi.co/
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
