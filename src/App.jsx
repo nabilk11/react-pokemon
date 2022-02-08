@@ -7,13 +7,25 @@ function App() {
   // need to create state for Pokemon
   //pokemon = pokemon data setPokemon = method by which we will update pokemon
   const [pokemon, setPokemon] = useState([]);
+  // creating state for changing pages to view additional pokemon
+  const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+  // creating state for nextPageUrl and prevPageUrl
+  const [nextPageUrl, setNextPageUrl] = useState();
+  const [prevPageUrl, setPrevPageUrl] = useState();
 
+
+// useEffect statement will make a new api call to whatever the new currentPageUrl is whenever it changes
+// it will also be setting new pokemon data based on the new page url, which will display 20 different pokemon
   useEffect(() => {
   // making api call with axios
-axios.get("https://pokeapi.co/api/v2/pokemon").then(res => {
+axios.get(currentPageUrl).then(res => {
+  // setting next and previous page url
+  setNextPageUrl(res.data.next)
+  setPrevPageUrl(res.data.previous)
+  // setting pokemon data
   setPokemon(res.data.results.map(p => p.name))
 })
-  }, [])
+  }, [currentPageUrl])
 
 
 
@@ -41,3 +53,8 @@ export default App;
 // must add an empty array to the last argument in useEffect in order to prevent it from rerendering
 // useEffect will continuously run each time one of these arguments change, an empty array will not change so it will only render once
 // moved axios api call into the useEffect function
+// created state array for changing page urls, passed the api url into the useState and set axios.get value to currentPageUrl
+// also moved currentPageUrl into the empty array in useEffect - this means that everytime the currentPageUrl changes,
+// then the useEffect will run again, and perform the axios api call for the new currentPageUrl
+// adding change of next and previous page url to our axios api call withing the useEffect function
+// this will change the data based on the properties of next and previous given to us from the api using res.data.next/previous
