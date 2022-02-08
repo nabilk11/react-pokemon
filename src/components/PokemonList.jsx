@@ -2,7 +2,10 @@ import React from 'react';
 
 export default function PokemonList({ pokemon } ) {
   return (
-  <div>
+  <div className='hello'>
+      <div className="header">
+      <h2><img src="https://www.pngitem.com/pimgs/m/2-25193_pokemon-ball-transparent-background-transparent-background-pokeball-png.png" alt="" /> Here is a List of Pokemon</h2>
+      </div>
 {pokemon.map(p => (
 <div key={p} className="pokemon">{p}</div>
 ))}

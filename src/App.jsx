@@ -1,6 +1,7 @@
 import React, { useState, useEffect }from 'react';
 import './App.css';
 import PokemonList from './components/PokemonList';
+import Pagination from './components/Pagination';
 import axios from 'axios';
 
 function App() {
@@ -38,6 +39,17 @@ axios.get(currentPageUrl, {
   return () => cancel() 
   }, [currentPageUrl])
 
+// function for going to next page
+function goToNext() {
+  setCurrentPageUrl(nextPageUrl)
+}
+// function for going to previous page
+function goToPrevious() {
+  setCurrentPageUrl(prevPageUrl)
+
+}
+
+
 
   // create conditional function to show that if loading is true, then it will return loading text
   if (loading) return "Pokemon are Loading..."
@@ -45,8 +57,11 @@ axios.get(currentPageUrl, {
 
   return (
     <div className="App">
-      <PokemonList pokemon={pokemon} />
-      
+      <PokemonList 
+      pokemon={pokemon} />
+      <Pagination 
+      goToNext={nextPageUrl ? goToNext : null}
+      goToPrevious={prevPageUrl ? goToPrevious : null}/>
     </div>
   );
 }
@@ -76,4 +91,5 @@ export default App;
 // adding cancel token from axios - this will cancel older requests before a new request is being made
 // this ensures no older data is being loaded as the new data is being requested
 // need to pass new cancel token into get request and call cancel() function to return at the end of our useEffect
-
+// need to create functions for going to next and previous pages of data - pagination
+// need to add pagination page to the App - go to pagination for next steps

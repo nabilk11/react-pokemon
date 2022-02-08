@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+margin-top: 2vh;
+border-radius: 8px;
+width: 10vw;
+height: 4vh;
+background-color: darkslateblue;
+color: dodgerblue;
+font-weight: bold;
+text-shadow: 2px 2px 2px black;
+margin-inline: 10px;
+box-shadow: 5px 5px 5px black;
+
+
+}
+
+img {
+  width: 10vw;
+
+}
+
+h2 {
+  background-color: white;
+  width: 100%;
+  color: darkslateblue;
+  padding-inline: 20px;
+}
+
+.hello .header {
+background-color: white;
+width: 100%;
+
+}
