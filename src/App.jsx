@@ -8,12 +8,14 @@ function App() {
   //pokemon = pokemon data setPokemon = method by which we will update pokemon
   const [pokemon, setPokemon] = useState([]);
 
-
-
-// making api call with axios
+  useEffect(() => {
+  // making api call with axios
 axios.get("https://pokeapi.co/api/v2/pokemon").then(res => {
   setPokemon(res.data.results.map(p => p.name))
 })
+  }, [])
+
+
 
 
   return (
@@ -34,4 +36,8 @@ export default App;
 // next step installed and imported axios for api call - using it to make api call from pokemon api
 // making api call with axios and using that to setstate
 // then we need to remove the example pokemon from the useState back to an empty array
-// importing useEffect
+// importing useEffect - each time something happens and we want to rerender our application when it does happen
+// the effect in this case is the api call 
+// must add an empty array to the last argument in useEffect in order to prevent it from rerendering
+// useEffect will continuously run each time one of these arguments change, an empty array will not change so it will only render once
+// moved axios api call into the useEffect function
