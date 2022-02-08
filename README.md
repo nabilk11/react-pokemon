@@ -4,6 +4,14 @@ A simple React application that uses the Pokemon API available at pokeapi.co, to
 # Pokemon API
 https://pokeapi.co/
 
+# Skills
+This was a simple application, but allowed me to work on a number of skills within React.
+- I was able to practice making API calls with axios - particularly within a React application blending in the useState and useEffect hooks.
+- The usage of cancelToken within axios.
+- Proper usage of React Hooks - useState and useEffect.
+- Proper usage of props to bring in data from an API.
+- Conditional statements within React.
+- Ternary functions with React.
 
 
 
