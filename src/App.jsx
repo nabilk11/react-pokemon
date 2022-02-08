@@ -5,7 +5,7 @@ import PokemonList from './components/PokemonList';
 function App() {
   // need to create state for Pokemon
   //pokemon = pokemon data setPokemon = method by which we will update pokemon
-  const [pokemon, setPokemon] = useState("bulbasaur", "charmander");
+  const [pokemon, setPokemon] = useState(["bulbasaur", "charmander"]);
   return (
     <div className="App">
       <PokemonList pokemon={pokemon} />
